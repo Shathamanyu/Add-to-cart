@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        body{
+            background: linear-gradient(90deg,lightblue,lightgreen) fixed;
+            width: 100vw;
+            height: 100vh;
+          }
+    
+          .o2{
+            display: none;
+          }
+    
+          .b1:hover{
+            .o1{
+              display: none;
+            }
+            .o2{
+              
+              display: block;
+            }
+          }
+            .container{
+                margin: 10px;
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                grid-template-rows: auto auto auto auto auto ;
+                gap: 10px;
+    
+            }
+            .container>div{
+                border: 1px solid;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                padding: 5px;
+                transition: background-color 1s ease-out 50ms;
+            }
+    
+            
+    
+            .container>div:hover{
+              background-color: #2827273b;
+              box-shadow: 0px 0px 11px 5px #000000;
+            }
+            .container>div>button{
+              font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+              
+              height: 20px;
+              width: 80px;
+            }
+    
+            .container>div>button:hover{
+              background-color: rgb(160, 240, 173);
+            }
+    
+    
+            .container>div>img:hover{
+              opacity: 0.5;
+            }
+            
+            .bil{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid;
+                width: 250px;
+                height: 30px;
+                border-radius: 5px;
+            }
+            .bill{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            #p1{
+                display: inline;
+            }
+    </style>
+</head>
+<body>
+    <button onclick="fun()" class="b1"><ion-icon class="o1" name="bag-handle-outline"></ion-icon><ion-icon class="o2" name="bag-remove"></ion-icon></button>
+
+    <div class="container" id="pa"></div>
+    
+    <center><div>
+        <p style="text-decoration:underline;">Recepit </p>
+        <div class="bil">
+            
+            <div class="bill">
+                <p>Amount payable : &emsp;</p>
+                <p id="p1">0</p>
+                <p id="p2">$</p>
+            </div>
+    
+        </div>
+    </div></center>
+    <script>
+        let bb=document.getElementById("bil");
+        let pa=document.getElementById("pa");
+        let p1=document.getElementById("p1");
+        let gd=JSON.parse(localStorage.getItem("detailss"));
+        console.log(gd);
+        let item =[];
+        
+        
+
+        newg = gd.map((val)=>{
+            console.log(val);
+            let im=document.createElement("img");
+        
+            im.width="100";
+            
+            var child=document.createElement("div");
+            var childa=document.createElement("div");
+            var childb=document.createElement("div");
+            var childc=document.createElement("div");
+            im.src=val.image;
+            //child.innerHTML=val.id;
+           
+        childa.innerHTML=val.title;
+        childb.innerHTML=val.category;
+        childc.innerHTML=val.naa;
+            
+           
+            pa.append(child);
+        
+            child.append(childb,childc,im,childa);
+        });
+        let c = 0;
+        pri=gd.map((val)=>{
+            c += val.price
+
+        })
+        function fun(){
+            history.back();
+          }
+        
+        p1.innerHTML=c;
+    </script>
+</body>
+</html>
